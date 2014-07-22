@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head> 
+<title>Slaid show</title>
+<style type="text/css">
+	.image
+	{
+		border: 4px solid #CCCCCC;
+		height: 390px;
+		width: 800px;
+        opacity: 0;
+        -webkit-transition: opacity 1.0s linear  0s;
+        -moz-transition: opacity 1.0s linear  0s;
+        transition: opacity 1.0s linear  0s;
+	}
+	#left_button
+	{
+		float: left;
+		margin: 150px 0 0 0;
+		opacity: 0.5;
+	}
+	#right_button
+	{
+		float: right;
+		margin: 150px 0 0 0;
+		opacity: 0.5;
+	}
+</style>
+<script>
+    var images_array = new Array();
+    images_array[0] = "images/High-Resolution.jpg";
+    images_array[1] = "images/winter-nature.jpg";
+    images_array[2] = "images/5T.jpg";
+    images_array[3] = "images/pretty_girl.jpg";
+    var Image_Number= 0;
+    var Image_Length= images_array.length-1;
+
+    function change_image_with_button(nun)
+    {
+        Image_Number = Image_Number + nun;
+        if(Image_Number > Image_Length)
+        {
+            Image_Number = 0;
+        }
+        if(Image_Number < 0)
+        {
+            Image_Number = Image_Length;
+        }
+        document.image.src = images_array[Image_Number];
+        return false;
+    }
+</script>
+</head>
+<body>
+	<center>
+            <img name="image" width="800px" height="390" src="images/High-Resolution.jpg" onclick="change_image_with_button(1)">
+			<button id="left_button" onclick="return change_image_with_button(-1);"><img src="images/Arrows-Left-circular-icon.png"></button>
+			<button id="right_button" onclick="return change_image_with_button(1);"><img src="images/Arrows-Right-circular-icon.png"></button>
+	</center>
+</body>
+</html>

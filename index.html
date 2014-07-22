@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head> 
+<title>Slaid show</title>
+<style type="text/css">
+	.image
+	{
+		border: 4px solid #CCCCCC;
+		max-height: 390px;
+		max-width: 800px;
+        position: relative;
+	}
+	#left_button
+	{
+		float: left;
+		margin: 150px 0 0 0;
+		opacity: 0.5;
+	}
+	#right_button
+	{
+		float: right;
+		margin: 150px 0 0 0;
+		opacity: 0.5;
+	}
+</style>
+<script>
+    var Images_array = ["images/High-Resolution.jpg", "images/winter-nature.jpg", "images/5T.jpg", "images/pretty_girl.jpg"];
+    var Image_Number= 0;
+    var Image_Length= Images_array.length-1;
+
+    function change_image_with_button(nun){
+        Image_Number = Image_Number + nun;
+        if(Image_Number > Image_Length){
+            Image_Number = 0;
+        }
+        if(Image_Number < 0){
+            Image_Number = Image_Length;
+        }
+        document.image.src = Images_array[Image_Number];
+    }
+    window.onload= function(){
+        document.getElementById('left_button').addEventListener('click',function(){
+            change_image_with_button(-1);
+        });
+        document.getElementById('right_button').addEventListener('click',function(){
+            change_image_with_button(1);
+        });
+        document.getElementById('image').addEventListener('click', function(){
+            change_image_with_button(1);
+        });
+    };
+
+    function shadowOfImage(){
+        document.getElementById('image').style.boxShadow = "10px 20px 30px blue";
+    }
+
+
+    function mouseOverTheButton(obj, valueButton){
+        obj.innerHTML = document.getElementById(valueButton).style.boxShadow = "10px 20px 30px blue";
+    }
+    function mouseOutTheButton(obj, valueButton){
+        obj.innerHTML = document.getElementById(valueButton).style.boxShadow = "0px 0px 0px white";
+    }
+
+    function enlargeOfImage(obj) {
+        obj.innerHTML = document.getElementById('image').style.maxHeight = "590px";
+        obj.innerHTML = document.getElementById('image').style.maxWidth = "1300px";
+        obj.innerHTML = document.getElementById('image').style.boxShadow = "10px 20px 30px blue";
+    }
+    function reduceOfImage(obj){
+        obj.innerHTML = document.getElementById('image').style.maxHeight = "390px";
+        obj.innerHTML = document.getElementById('image').style.maxWidth = "800px";
+        obj.innerHTML = document.getElementById('image').style.boxShadow = "0px 0px 0px white";
+    }
+</script>
+</head>
+<body>
+	<center>
+            <img id="image" name="image"  src="images/High-Resolution.jpg" onmouseover="enlargeOfImage(this)" onmouseout="reduceOfImage(this)">
+			<button id="left_button"><img src="images/Arrows-Left-circular-icon.png" onmouseover="mouseOverTheButton(this, 'left_button')" onmouseout="mouseOutTheButton(this, 'left_button')"></button>
+			<button id="right_button"><img src="images/Arrows-Right-circular-icon.png" onmouseover="mouseOverTheButton(this, 'right_button')" onmouseout="mouseOutTheButton(this, 'right_button')"></button>
+	</center>
+</body>
+</html>
