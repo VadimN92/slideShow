@@ -6,8 +6,8 @@
 	.image
 	{
 		border: 4px solid #CCCCCC;
-		max-height: 390px;
-		max-width: 800px;
+		height: 390px;
+		width: 800px;
         position: relative;
 	}
 	#left_button
@@ -48,37 +48,61 @@
         document.getElementById('image').addEventListener('click', function(){
             change_image_with_button(1);
         });
+        document.getElementById('image').addEventListener('mouseover', function(){
+            enlargeOfImage();
+        });
+        document.getElementById('image').addEventListener('mouseout', function(){
+            reduceOfImage();
+        });
+
+
+        document.getElementById('left_button').addEventListener('mouseover', function(){
+            mouseOverLeftButton();
+        });
+        document.getElementById('right_button').addEventListener('mouseover', function(){
+            mouseOverRightButton();
+        });
+        document.getElementById('left_button').addEventListener('mouseover', function(){
+            mouseOutLeftButton();
+        });
+        document.getElementById('right_button').addEventListener('mouseover', function(){
+            mouseOutRightButton();
+        });
     };
 
-    function shadowOfImage(){
+
+
+// i dont like the code because repeat the some code in function
+    function mouseOverLeftButton(){
+        document.getElementById('left_button').style.boxShadow = "10px 20px 30px blue";
+    }
+    function mouseOverRightButton(){
+        document.getElementById('right_button').style.boxShadow = "10px 20px 30px blue";
+    }
+    function mouseOutLeftButton(){
+        document.getElementById('left_button').style.boxShadow = "0px 0px 0px white";
+    }
+    function mouseOutRightButton(){
+        document.getElementById('right_button').style.boxShadow = "0px 0px 0px white";
+    }
+
+    function enlargeOfImage(){
+        document.getElementById('image').style.maxHeight = "590px";
+        document.getElementById('image').style.maxWidth = "1300px";
         document.getElementById('image').style.boxShadow = "10px 20px 30px blue";
     }
-
-
-    function mouseOverTheButton(obj, valueButton){
-        obj.innerHTML = document.getElementById(valueButton).style.boxShadow = "10px 20px 30px blue";
-    }
-    function mouseOutTheButton(obj, valueButton){
-        obj.innerHTML = document.getElementById(valueButton).style.boxShadow = "0px 0px 0px white";
-    }
-
-    function enlargeOfImage(obj) {
-        obj.innerHTML = document.getElementById('image').style.maxHeight = "590px";
-        obj.innerHTML = document.getElementById('image').style.maxWidth = "1300px";
-        obj.innerHTML = document.getElementById('image').style.boxShadow = "10px 20px 30px blue";
-    }
-    function reduceOfImage(obj){
-        obj.innerHTML = document.getElementById('image').style.maxHeight = "390px";
-        obj.innerHTML = document.getElementById('image').style.maxWidth = "800px";
-        obj.innerHTML = document.getElementById('image').style.boxShadow = "0px 0px 0px white";
+    function reduceOfImage(){
+        document.getElementById('image').style.maxHeight = "390px";
+        document.getElementById('image').style.maxWidth = "800px";
+        document.getElementById('image').style.boxShadow = "0px 0px 0px white";
     }
 </script>
 </head>
 <body>
 	<center>
-            <img id="image" name="image"  src="images/High-Resolution.jpg" onmouseover="enlargeOfImage(this)" onmouseout="reduceOfImage(this)">
-			<button id="left_button"><img src="images/Arrows-Left-circular-icon.png" onmouseover="mouseOverTheButton(this, 'left_button')" onmouseout="mouseOutTheButton(this, 'left_button')"></button>
-			<button id="right_button"><img src="images/Arrows-Right-circular-icon.png" onmouseover="mouseOverTheButton(this, 'right_button')" onmouseout="mouseOutTheButton(this, 'right_button')"></button>
+            <img id="image" name="image"  src="images/High-Resolution.jpg">
+			<button id="left_button"><img src="images/Arrows-Left-circular-icon.png"></button>
+			<button id="right_button"><img src="images/Arrows-Right-circular-icon.png"></button>
 	</center>
 </body>
 </html>
